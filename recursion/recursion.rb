@@ -28,3 +28,15 @@ def expo_two(b, n)
     b * (expo_two(b, (n - 1) / 2) ** 2)
   end
 end
+
+class Array
+  def deep_dup
+    new_arr = []
+
+    self.each do |el|
+      new_arr << (el.is_a?(Array) ? el.deep_dup : el)
+    end
+
+    new_arr
+  end
+end
