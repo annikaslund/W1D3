@@ -76,6 +76,44 @@ def bsearch(arr, target)
       nil
     else
       sub_ans + (mid + 1)
-    end 
+    end
   end
+end
+
+class Array
+  def merge_sort
+    return self if count < 2
+    sorted = self.sort
+    mid = self.length / 2
+
+    left, right = sorted.take(mid), sorted.drop(mid)
+    sorted_left, sorted_right = left.merge_sort, right.merge_sort
+
+    merge(sorted_left, sorted_right)
+  end
+
+  def merge(left, right)
+    merged_array = []
+
+    until left.empty? || right.empty?
+      merged_array << ((left.first < right.first) ? left.shift : right.shift)
+    end
+
+    merged_array + left + right
+  end
+end
+
+def permutations(array)
+  return [array] if array.length <= 1
+  first = array.shift
+  perms = permutations(array)
+  total_perms = []
+
+  perms.each do |perm|
+    (0..perm.length).each do |i|
+      total_perms << perm[0...i] + [first] + perm[i..-1]
+    end
+  end
+
+  total_perms
 end
