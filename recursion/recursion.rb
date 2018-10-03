@@ -40,3 +40,24 @@ class Array
     new_arr
   end
 end
+
+def fibonacci(n)
+  return [] if n == 0
+  return [1] if n == 1
+  return [1, 1] if n == 2
+  fibs = fibonacci(n - 1)
+  fibs << fibs[-2] + fibs[-1]
+end
+
+def fibonacci_it(n)
+  return [] if n == 0
+  return [0] if n == 1
+
+  fibs = [0, 1]
+
+  while fibs.count < n
+    fibs << fibs[-2] + fibs[-1]
+  end
+
+  fibs
+end
