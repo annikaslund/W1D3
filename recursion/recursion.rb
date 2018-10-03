@@ -61,3 +61,21 @@ def fibonacci_it(n)
 
   fibs
 end
+
+def bsearch(arr, target)
+  sorted_arr = arr.sort
+  mid = sorted_arr.length / 2
+  count = 0
+
+  return mid if sorted_arr[mid] == target
+  if sorted_arr[mid] > target
+    bsearch(arr.take(mid), target)
+  else
+    sub_ans = bsearch(arr.drop(mid + 1), target)
+    if sub_ans.nil?
+      nil
+    else
+      sub_ans + (mid + 1)
+    end 
+  end
+end
